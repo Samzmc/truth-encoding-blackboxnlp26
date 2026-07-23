@@ -15,7 +15,13 @@ REPRO_DIR=/path/to/reproduction python make_figures.py --only B1 D6
 - `final/` — PNG + PDF without figure-level titles (panel identifiers such as
   model names are kept; everything else goes into captions).
 
-Blocks: A = reproduction, B = ablation, C = behavioral, D = representational.
+Blocks: A = reproduction, B = ablation (experiment 1), C = behavioral
+(experiment 2), D = representational (experiment 3).
+
+Paths in the *Data source* column refer to the full-output layout under
+`REPRO_DIR` (the data release), which keeps the historical internal directory
+names (`phase0_original`, `phase2`, `phase3`, …) — see the naming note in the
+top-level README.
 
 | Figure | Content | Data source |
 |---|---|---|

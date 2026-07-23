@@ -25,8 +25,8 @@ from typing import Any
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent
-RAW_COUNTERFACT = ROOT.parent / "phase2" / "data" / "raw" / "counterfact.json"
-EXAMPLES_PARQUET = ROOT.parent / "phase2" / "data" / "processed" / "examples.parquet"
+RAW_COUNTERFACT = ROOT.parent / "experiment3_scaling_probes" / "data" / "raw" / "counterfact.json"
+EXAMPLES_PARQUET = ROOT.parent / "experiment3_scaling_probes" / "data" / "processed" / "examples.parquet"
 OUT_DIR = ROOT / "context_prompts"
 
 SEED_STAGE_A = 42          # matches the original notebook's tuple seed

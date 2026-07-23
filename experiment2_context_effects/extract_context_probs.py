@@ -28,7 +28,7 @@ from typing import Any
 import numpy as np
 
 ROOT = Path(__file__).resolve().parent
-ENV_PATH = ROOT.parent / "phase2" / ".env"
+ENV_PATH = ROOT.parent / "experiment3_scaling_probes" / ".env"
 PROMPTS = {
     "a": ROOT / "context_prompts" / "stage_a_p103_tuples.jsonl",
     "b": ROOT / "context_prompts" / "stage_b_grid_tuples.jsonl",
@@ -57,7 +57,7 @@ def load_env() -> str:
             os.environ.setdefault(k.strip(), v.strip())
     api_key = os.environ.get("NDIF_API_KEY", "").strip()
     if not api_key:
-        raise RuntimeError("Set NDIF_API_KEY in phase2/.env")
+        raise RuntimeError("Set NDIF_API_KEY in experiment3_scaling_probes/.env")
     return api_key
 
 
