@@ -11,7 +11,7 @@ Usage:
         --matrix_dir phase0_original/toy_seed0/analysis/ov_matrices/
 
     # Compare normal vs ablated (4-panel mean±std plot)
-    python cosine_similarity_toy.py --compare \
+    python cosine_similarity_toy.py compare \
         --normal_dirs phase0_original/toy_seed{0..4}/analysis/ov_matrices/ \
         --ablated_dirs phase1_ablation/toy_seed{0..4}/analysis/ov_matrices/ \
         --output_path comparison_figures/

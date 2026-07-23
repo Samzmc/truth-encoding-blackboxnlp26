@@ -52,13 +52,23 @@ ablated variant respectively (5 seeds toy, 3–5 seeds fully-trained):
 
 ```
 cd experiment1_toy_ablation
-bash phase0_original/run_toy.sh          # baseline toy, 5 seeds
-bash phase1_ablation/run_toy.sh          # ablated toy, 5 seeds
-bash run_overnight_rho08.sh              # fully-trained ρ=0.8, normal + ablated
-python compare_toy_auc.py                # summary comparisons
-python compare_fulltrained.py
-python cosine_similarity_toy.py
+bash phase0_original/run_toy.sh          # baseline toy, 5 seeds (train + analyze)
+bash phase1_ablation/run_toy.sh          # ablated toy, 5 seeds (train + analyze)
+bash run_overnight_rho08.sh              # fully-trained ρ=0.8: train + analyze + compare
+
+# toy probe-AUC curves over training, then the normal-vs-ablated comparisons
+python toy_auc_curve.py --run_dirs phase0_original/toy_seed{0..4} phase1_ablation/toy_seed{0..4}
+python compare_toy_auc.py \
+    --normal_dirs phase0_original/toy_seed{0..4}/analysis \
+    --ablated_dirs phase1_ablation/toy_seed{0..4}/analysis \
+    --output_path comparison_figures_toy_rho08 --label toy_rho08
+python cosine_similarity_toy.py compare \
+    --normal_dirs phase0_original/toy_seed{0..4}/analysis/ov_matrices \
+    --ablated_dirs phase1_ablation/toy_seed{0..4}/analysis/ov_matrices \
+    --output_path comparison_figures_toy_rho08
 ```
+
+(The `{0..4}` ranges are bash brace expansion; expand manually in other shells.)
 
 Per-run outputs (checkpoints, per-step metrics) are written next to the run
 scripts; the shipped `comparison_figures_*/` directories contain the summary
