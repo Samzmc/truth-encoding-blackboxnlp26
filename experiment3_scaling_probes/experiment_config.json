@@ -1,0 +1,19 @@
+{
+  "probe": {
+    "model": "LogisticRegression",
+    "solver": "lbfgs",
+    "penalty": "l2",
+    "C": 1.0,
+    "max_iter": 1000,
+    "tol": 0.0001,
+    "fit_intercept": true,
+    "class_weight": null,
+    "random_state": 42
+  },
+  "scaler": "StandardScaler",
+  "primary_metric": "roc_auc",
+  "secondary_metric": "balanced_accuracy",
+  "balanced_accuracy_threshold": 0.5,
+  "n_folds": 3,
+  "layer_selection_tie_tolerance": 0.005
+}

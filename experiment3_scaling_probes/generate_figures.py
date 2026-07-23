@@ -1,6 +1,6 @@
 """Generate Phase 2 publication figures.
 
-Run from workspace/reproduction/scaling/ under the blackboxnlp conda env:
+Run from this directory under the blackboxnlp conda env:
     python generate_figures.py
 """
 from __future__ import annotations

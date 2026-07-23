@@ -1,6 +1,6 @@
 """Phase 2 probing pipeline: Stage 1A, 1B, layer selection, Stage 2.
 
-Run from workspace/reproduction/scaling/ under the blackboxnlp conda env:
+Run from this directory under the blackboxnlp conda env:
     python run_probing.py
 """
 from __future__ import annotations

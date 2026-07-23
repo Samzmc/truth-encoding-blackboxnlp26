@@ -1,0 +1,57 @@
+{
+  "pilot_relation": "P19",
+  "pilot_subset": "N50",
+  "pilot_sentences": 100,
+  "pilot_timing": {
+    "llama_3_1_8b": {
+      "model_id": "meta-llama/Llama-3.1-8B",
+      "model_key": "llama_3_1_8b",
+      "num_layers": 32,
+      "hidden_dim": 4096,
+      "sentences_processed": 100,
+      "model_init_seconds": 1.4,
+      "remote_execution_seconds": 171.3,
+      "total_wall_clock_seconds": 171.32,
+      "seconds_per_sentence": 1.713
+    },
+    "llama_3_1_70b": {
+      "model_id": "meta-llama/Llama-3.1-70B",
+      "model_key": "llama_3_1_70b",
+      "num_layers": 80,
+      "hidden_dim": 8192,
+      "sentences_processed": 100,
+      "model_init_seconds": 2.93,
+      "remote_execution_seconds": 231.83,
+      "total_wall_clock_seconds": 231.86,
+      "seconds_per_sentence": 2.319
+    }
+  },
+  "estimated_full_extraction": {
+    "N50": {
+      "sentences": 600,
+      "multiplier": 6.0,
+      "estimated_8b_seconds": 1027.9,
+      "estimated_70b_seconds": 1391.2,
+      "estimated_total_seconds": 2419.1
+    },
+    "N75": {
+      "sentences": 900,
+      "multiplier": 9.0,
+      "estimated_8b_seconds": 1541.9,
+      "estimated_70b_seconds": 2086.7,
+      "estimated_total_seconds": 3628.6
+    },
+    "N100": {
+      "sentences": 1200,
+      "multiplier": 12.0,
+      "estimated_8b_seconds": 2055.8,
+      "estimated_70b_seconds": 2782.3,
+      "estimated_total_seconds": 4838.2
+    }
+  },
+  "decision": {
+    "N_final": 100,
+    "rationale": "N100 estimated at 81min total extraction, well within remaining time budget before July 17 deadline. Reserving 6+ hours for probing, validation, figures, and debugging.",
+    "decided_at": "2026-07-12"
+  }
+}

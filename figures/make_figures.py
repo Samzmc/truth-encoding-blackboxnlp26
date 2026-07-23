@@ -357,8 +357,8 @@ def fig_B5(final: bool):
     fig.tight_layout()
     save(fig, "B5_ov_amplitude", final)
 
-    # print check against notes §14
-    print("    a_B check (normal | ablated), notes: memory 3.61|6.08, "
+    # sanity check against previously computed reference values
+    print("    a_B check (normal | ablated), reference: memory 3.61|6.08, "
           "neg_id 3.59|0.52, rev 4.01|0.39, selfsup 3.88|4.55")
     for n in names:
         mn = np.mean([m[n][0] for m in metrics_n])

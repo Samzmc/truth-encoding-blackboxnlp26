@@ -4,7 +4,7 @@ Processes six CounterFact relations into balanced true/false sentence pairs
 with derangement-based negative construction.  Produces nested N50/N75/N100
 subsets for the timing-gate sample-size selection.
 
-Run from workspace/reproduction/scaling/ under the blackboxnlp conda env:
+Run from this directory under the blackboxnlp conda env:
     python prepare_counterfact_multirelation.py
 """
 

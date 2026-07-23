@@ -3,9 +3,9 @@
 Before running:
   1. Put NDIF_API_KEY and HF_TOKEN in the adjacent .env file.
   2. Ensure the Hugging Face account behind HF_TOKEN has Meta Llama 3.1 access.
-  3. Install the workspace requirements.
+  3. Install the repository requirements.
 
-Run from workspace/reproduction/scaling:
+Run from this directory:
   python ndif_smoke_test.py
 
 This script sends one short prompt to NDIF. It does not download or run

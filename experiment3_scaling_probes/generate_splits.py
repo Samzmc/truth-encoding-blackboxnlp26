@@ -3,7 +3,7 @@
 True/false examples from the same pair are always in the same fold.
 Downstream code joins on example_id, never on row index.
 
-Run from workspace/reproduction/scaling/ under the blackboxnlp conda env:
+Run from this directory under the blackboxnlp conda env:
     python generate_splits.py
 """
 
