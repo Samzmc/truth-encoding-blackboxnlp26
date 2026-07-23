@@ -1,0 +1,34 @@
+# requirements.txt for truth-encoding-neurips reproduction (blackbox-nlp-2026)
+#
+# NOTE: torch / torchvision / torchaudio are intentionally NOT listed here.
+# RTX 5080 (laptop, Blackwell / sm_120) needs the CUDA-12.8 wheels, which must
+# be installed from PyTorch's own index (see the install commands). Installing
+# them from plain PyPI or conda-forge can silently give you a build without
+# sm_120 kernels. Install torch FIRST with the dedicated command, THEN run
+# `pip install -r requirements.txt` for everything below.
+
+# --- core numerics / data ---
+numpy>=1.26
+scipy>=1.12
+pandas>=2.2
+
+# --- ML / interpretability ---
+scikit-learn>=1.4          # SGDClassifier, roc_auc_score, PCA, StratifiedKFold (linear probes)
+transformers>=4.46         # Llama-3-8B, GPT2, AutoModel/AutoTokenizer
+accelerate>=0.33           # device_map="auto" for Llama-3-8B
+huggingface_hub>=0.25       # model/dataset downloads, gated-repo auth
+datasets>=2.20              # load_dataset() for MAVEN-FACT / CounterFact jsonl
+nnsight>=0.6                 # interpretability toolkit (activation patching, tracing)
+sentencepiece>=0.2.0         # tokenizer backend some HF models need
+protobuf>=4.25               # tokenizer backend dependency
+
+# --- plotting / notebooks ---
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.20
+jupyter>=1.0
+ipykernel>=6.29
+
+# --- misc ---
+tqdm>=4.66
+einops>=0.8                  # common tensor-reshape helper in interpretability code

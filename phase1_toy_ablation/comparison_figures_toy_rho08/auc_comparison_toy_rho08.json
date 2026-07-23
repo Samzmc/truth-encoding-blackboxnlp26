@@ -1,0 +1,20 @@
+{
+  "label": "toy_rho08",
+  "layer": "L1",
+  "n_seeds_normal": 5,
+  "n_seeds_ablated": 5,
+  "pos2": {
+    "position": "pos 2 x'",
+    "normal_final_mean": 0.970906543621405,
+    "normal_final_std": 0.005139088780866606,
+    "ablated_final_mean": 0.9591263677136104,
+    "ablated_final_std": 0.0054979235080615295
+  },
+  "pos1": {
+    "position": "pos 1 y",
+    "normal_final_mean": 0.9751522597603939,
+    "normal_final_std": 0.0030533483757316693,
+    "ablated_final_mean": 0.9750922200157934,
+    "ablated_final_std": 0.0033693565466550624
+  }
+}

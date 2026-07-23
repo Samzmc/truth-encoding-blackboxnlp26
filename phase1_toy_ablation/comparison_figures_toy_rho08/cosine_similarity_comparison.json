@@ -1,0 +1,26 @@
+{
+  "memory": {
+    "normal_final_mean": 0.9394671527221419,
+    "normal_final_std": 0.004890581164443252,
+    "ablated_final_mean": 0.965340730555068,
+    "ablated_final_std": 0.0042995687340706456
+  },
+  "neg_identity": {
+    "normal_final_mean": 0.856185886764384,
+    "normal_final_std": 0.0033919277455113877,
+    "ablated_final_mean": 0.8157582659112445,
+    "ablated_final_std": 0.007303037078228096
+  },
+  "reverse_lookup": {
+    "normal_final_mean": 0.8227137224674964,
+    "normal_final_std": 0.005170986771445433,
+    "ablated_final_mean": 0.8084025013112235,
+    "ablated_final_std": 0.007568418838655086
+  },
+  "self_suppression": {
+    "normal_final_mean": 0.9276329650815545,
+    "normal_final_std": 0.005538826181961438,
+    "ablated_final_mean": 0.9568271643876498,
+    "ablated_final_std": 0.003965742200617673
+  }
+}

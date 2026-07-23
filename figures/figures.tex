@@ -1,0 +1,252 @@
+% ============================================================
+% All 14 figure environments for the over-complete draft.
+% Paste everything in one go; move/trim figures later.
+% Upload submission/figures/final/*.pdf to figures/ on Overleaf.
+% figure = one column, figure* = full width (ACL two-column).
+%
+% Section mapping (standard names):
+%   INTRO        - no figures (cite \ref{fig:ablation-auc} in text)
+%   BACKGROUND   - no figures
+%   METHODOLOGY  - no figures (tables live here, see notes in chat)
+%   RESULTS      - 13 figures, in four subsections:
+%     4.1 Reproduction:            A1
+%     4.2 Ablation:                B1, B2, B5, B3, B4
+%     4.3 Behavioral (LLM):        C1, C2
+%     4.4 Representational (LLM):  D1, D2, D3, D4, D5
+%   DISCUSSION   - D6
+%   LIMITATIONS / CONCLUSION - no figures
+% ============================================================
+
+
+% ────────────────────────────────────────────────────────────
+% RESULTS 4.1 — Reproduction of the synthetic pipeline
+% ────────────────────────────────────────────────────────────
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/A1_toy_ov_heatmap.pdf}
+  \caption{Reproduction of the toy model's OV circuit
+  ($W = W_o W_v$, step 2000, $\rho=0.8$, $N=20$, seed 0; one-hot frozen
+  embeddings, uniform attention, only $W$ trained). All four sub-blocks
+  of the original paper's Figure~1 emerge: memory
+  ($e_x \to u_{g(x)}$), negative identity ($e_x \to -e_x$), reverse
+  lookup ($e_y \to e_{g^{-1}(y)}$), and self-suppression
+  ($e_y \to -u_y$).}
+  \label{fig:toy-repro}
+\end{figure}
+
+
+% ────────────────────────────────────────────────────────────
+% RESULTS 4.2 — Independent-truth ablation
+% ────────────────────────────────────────────────────────────
+
+% Lead figure of the whole paper.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/B1_ablation_auc_triptych.pdf}
+  \caption{Linear truth decodability requires cross-pair truth
+  co-occurrence in the trainable model but not in the toy model.
+  Probe AUC at the second-pair position ($x'$, final layer) over
+  training, for the normal condition (shared truth bit
+  $T \sim \mathrm{Ber}(\rho)$) versus the ablated condition
+  (independent $T_1, T_2$; identical marginals, identical mapping
+  $g$). \textbf{(a)}~Fully-trained one-layer transformer, $\rho=0.99$
+  ($n=5$ seeds); \textbf{(b)}~fully-trained, $\rho=0.8$ ($n=3$);
+  \textbf{(c)}~toy model, $\rho=0.8$ ($n=5$). Shading is $\pm 1$ std
+  across seeds; dotted line is chance. In the fully-trained model the
+  ablated probe never exceeds AUC $0.536$ at any checkpoint of any
+  seed, while factual recall stays perfect (mapping accuracy
+  $512/512$ in every run); the toy model retains near-ceiling
+  decodability ($0.971 \to 0.959$) under the identical intervention.
+  Probes: logistic SGD, 5-fold stratified CV, evaluated at
+  $p_\mathrm{eval}=0.5$.}
+  \label{fig:ablation-auc}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/B2_toy_ov_heatmaps_pair.pdf}
+  \caption{Toy-model OV circuit under the independent-truth ablation
+  ($W = W_o W_v$ at step 2000, seed 0, shared color scale). The
+  embedding-space blocks in the $e_x$ rows (negative identity) and the
+  reverse-lookup structure collapse in amplitude under ablation, while
+  the unembedding-space blocks ($u_y$ rows: memory, self-suppression)
+  persist or strengthen --- the probe-decodable residue behind
+  Fig.~\ref{fig:ablation-auc}c. See
+  Fig.~\ref{fig:ov-amplitude} for the quantitative amplitude analysis.}
+  \label{fig:toy-ov-pair}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/B5_ov_amplitude.pdf}
+  \caption{The ablation collapses toy OV sub-block amplitudes without
+  rotating them. Signed target projection
+  $a_B = \langle B, T\rangle / \lVert T \rVert^2$ (left) and Frobenius
+  norm (right) of each OV sub-block against its signed-identity
+  target at step 2000 (mean $\pm$ SD over 5 seeds per condition).
+  Under ablation, negative identity and reverse lookup lose
+  $7$--$10\times$ in target projection ($3.59 \to 0.52$ and
+  $4.01 \to 0.39$) while memory and self-suppression persist or
+  strengthen. Orientation is preserved throughout
+  (Fig.~\ref{fig:ov-cosine}), which is why probe AUC alone
+  (Fig.~\ref{fig:ablation-auc}c) is an insensitive measure of the
+  intervention's mechanistic effect.}
+  \label{fig:ov-amplitude}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/B3_ov_cosine_4panel.pdf}
+  \caption{OV sub-block orientation survives the ablation. Cosine
+  similarity between each toy OV sub-block and its signed-identity
+  theoretical target over training (mean $\pm$ SD, $n=5$ seeds per
+  condition). All four blocks converge to high cosine similarity in
+  both conditions; the ablation's effect is almost invisible in this
+  metric, in contrast to the $7$--$10\times$ amplitude collapse in
+  Fig.~\ref{fig:ov-amplitude}. Cosine measures orientation and is
+  invariant to scale, so it alone cannot evaluate an ablation that
+  shrinks a circuit without rotating it.}
+  \label{fig:ov-cosine}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/B4_prob_comparison_rho099.pdf}
+  \caption{The ablated fully-trained model converges to the
+  Bayes-optimal constant strategy. Probability assigned to the correct
+  attribute $g(x')$ on true (left) and false (right) sequences over
+  training ($\rho=0.99$, mean $\pm$ SD, $n=5$). The normal model
+  learns to modulate its confidence by the truth of the first pair;
+  the ablated model always predicts $g(x')$ with confidence
+  $\approx \rho$ on both sequence types, exactly as information theory
+  predicts when $I(T_1; T_2)=0$.}
+  \label{fig:prob-comparison}
+\end{figure*}
+
+
+% ────────────────────────────────────────────────────────────
+% RESULTS 4.3 — Behavioral context effects (Llama-3.1 8B vs 70B)
+% ────────────────────────────────────────────────────────────
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/C1_fig6a_combined.pdf}
+  \caption{Faithful reproduction of the original paper's Figure~6a at
+  two scales. NLL of the correct attribute after $k$ false (F$^k$) or
+  true (T$^k$) context sentences (CounterFact P103, native language;
+  896 prompts per model; dashed line = no-context median; diamonds =
+  medians). The reproduction deliberately retains the original
+  pipeline's flaws (attribute priming, answer leakage, unpaired
+  conditions). Median FF$-$TT gap: 8B $1.43$ nats (paper:
+  $1.52$ on Llama-3-8B); 70B $1.83$, growing with context length
+  ($1.99$ / $2.22$ for three / four sentences). Deviations from the
+  paper: Llama-3.1 (base), tokenization fix, resampled tuples.}
+  \label{fig:fig6a}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/C2_behavioral_grid.pdf}
+  \caption{The behavioral context-truthfulness effect transfers across
+  relations. Median paired $\Delta$NLL (false $-$ true context) over a
+  $6\times 6$ context-relation $\times$ target-relation grid, under the
+  controlled design (paired true/false versions of the same
+  context facts, subject exclusion, anti-priming exclusion; 64 pairs
+  per cell). Positive values mean false context hurts recall of the
+  target fact. The within-relation (diagonal) effect is significant in
+  all six relations for both models (Wilcoxon $p<0.05$); off-diagonal
+  transfer is significant in 29/30 cells for 70B versus 27/30 for 8B,
+  with mean off-diagonal $\Delta$NLL $0.51$ versus $0.32$ nats --- the
+  effect is more relation-general at 70B.}
+  \label{fig:behavioral-grid}
+\end{figure*}
+
+
+% ────────────────────────────────────────────────────────────
+% RESULTS 4.4 — Representational transfer (Llama-3.1 8B vs 70B)
+% ────────────────────────────────────────────────────────────
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/D1_depth_profile.pdf}
+  \caption{Truth is linearly decodable at both scales and becomes
+  relation-general at 70B. Mean within-relation (3-fold CV) and
+  leave-one-relation-out probe AUC across six CounterFact relations at
+  four normalized depths (error bars: SD across relations; shaded
+  verticals: each model's selected layer --- 8B layer 7 / 25\%, 70B
+  layer 39 / 50\%). At its selected layer the 70B leave-one-out probe
+  matches within-relation performance (mean gap $-0.002$ vs
+  $+0.009$ for 8B): a probe trained on five relations transfers to an
+  unseen sixth with no loss.}
+  \label{fig:depth-profile}
+\end{figure}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/D2_probe_transfer_matrices.pdf}
+  \caption{Probe transfer matrices: ROC-AUC of a truth probe trained on
+  the source relation and evaluated on the target relation (100
+  balanced true/false pairs per relation; diagonal = within-relation
+  3-fold CV). Each model is evaluated at its selected layer (8B layer
+  7, depth 25\%; 70B layer 39, depth 50\%). Transfer is near ceiling
+  at both scales --- 70B cells span $0.916$--$1.000$ --- and is higher
+  and more uniform at 70B. This is the representational counterpart of
+  the behavioral grid in Fig.~\ref{fig:behavioral-grid}.}
+  \label{fig:probe-transfer}
+\end{figure*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\columnwidth]{figures/D3_generality_gap.pdf}
+  \caption{Mean absolute generality gap
+  ($|$within-relation $-$ leave-one-relation-out AUC$|$, averaged over
+  six relations) by depth. 70B has a smaller gap than 8B at every
+  depth.}
+  \label{fig:generality-gap}
+\end{figure}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/D4_relation_profiles.pdf}
+  \caption{Per-relation depth profiles: within-relation (solid,
+  circles) and leave-one-relation-out (dashed, squares) AUC across
+  four normalized depths for each of the six CounterFact relations.
+  Place of birth is the hardest relation at both scales; manufacturer
+  and named after are near ceiling. 70B shows flatter, more uniform
+  profiles.}
+  \label{fig:relation-profiles}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/D5_relation_gap_detail.pdf}
+  \caption{Per-relation generality gap (within $-$ leave-one-out) at
+  each model's selected layer. Positive bars mean the within-relation
+  probe wins; negative bars mean the leave-one-out probe transfers
+  better than within-relation training. At 70B every relation's gap is
+  within $\pm 0.010$.}
+  \label{fig:relation-gap-detail}
+\end{figure*}
+
+
+% ────────────────────────────────────────────────────────────
+% DISCUSSION — linking behavioral and representational transfer
+% ────────────────────────────────────────────────────────────
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/D6_behavioral_vs_probe_scatter.pdf}
+  \caption{The behavioral and representational transfer structures do
+  not align at the relation-pair level. Each point is one cell of the
+  $6\times 6$ grids: probe transfer AUC
+  (Fig.~\ref{fig:probe-transfer}) against behavioral $\Delta$NLL
+  (Fig.~\ref{fig:behavioral-grid}); diamonds mark within-relation
+  (diagonal) cells. Spearman correlation is null at both scales
+  ($\rho=0.25$, $p=0.14$ for 8B; $\rho=-0.05$, $p=0.78$ for 70B),
+  even though each structure replicates across scales (behavioral 8B
+  vs 70B $\rho=0.71$; probe $\rho=0.53$). Caveats: the 36 cells share
+  rows/columns (correlations are descriptive, not formal tests), and
+  the probe matrices are ceiling-compressed.}
+  \label{fig:behavioral-vs-probe}
+\end{figure*}

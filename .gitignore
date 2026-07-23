@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+*.pt
+*.npy
+activations/
+data/raw/
+overnight_log.txt

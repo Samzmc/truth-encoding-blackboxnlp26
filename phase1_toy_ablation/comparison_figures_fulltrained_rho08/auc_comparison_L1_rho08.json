@@ -1,0 +1,8 @@
+{
+  "label": "L1_rho08",
+  "layer": "L1",
+  "normal_final_mean": 0.9851347718956162,
+  "normal_final_std": 0.0018916723934187289,
+  "ablated_final_mean": 0.49793727271886845,
+  "ablated_final_std": 0.016109851743262172
+}

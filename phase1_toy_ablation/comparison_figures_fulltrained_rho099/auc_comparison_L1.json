@@ -1,0 +1,8 @@
+{
+  "label": "L1",
+  "layer": "L1",
+  "normal_final_mean": 0.9539193125326364,
+  "normal_final_std": 0.0076984152281531805,
+  "ablated_final_mean": 0.494832907660514,
+  "ablated_final_std": 0.010894583944744225
+}
