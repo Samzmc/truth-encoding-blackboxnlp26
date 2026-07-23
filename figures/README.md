@@ -11,9 +11,10 @@ REPRO_DIR=/path/to/reproduction python make_figures.py
 REPRO_DIR=/path/to/reproduction python make_figures.py --only B1 D6
 ```
 
-- `draft/` — PNG with in-figure titles, for writing the appendix draft around.
-- `final/` — PNG + PDF without figure-level titles (panel identifiers such as
-  model names are kept; everything else goes into captions).
+`final/` holds the versions used in the paper: PNG + PDF without figure-level
+titles (panel identifiers such as model names are kept; everything else goes
+into captions). The script can additionally emit titled draft versions into
+`draft/`, which are not shipped here.
 
 Blocks: A = reproduction, B = ablation (experiment 1), C = behavioral
 (experiment 2), D = representational (experiment 3).
