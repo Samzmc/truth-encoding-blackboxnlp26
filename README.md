@@ -79,6 +79,13 @@ in `results/`: `grid_matrix_{8B,70B}.csv` (6×6 median paired ΔNLL),
 
 ## Experiment 3 — scaling probes (Llama-3-8B / 70B)
 
+First download the raw CounterFact dataset (Meng et al., 2022) to
+`experiment3_scaling_probes/data/raw/counterfact.json`:
+
+```
+curl -o experiment3_scaling_probes/data/raw/counterfact.json --create-dirs https://rome.baulab.info/data/dsets/counterfact.json
+```
+
 Pipeline order:
 
 ```
